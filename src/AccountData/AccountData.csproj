@@ -20,18 +20,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="MassTransit" Version="6.2.2" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="6.2.2" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swisschain.Sdk.Server" Version="3.0.0" />
+    <PackageReference Include="Swisschain.Sdk.Server" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AccountData.Common\AccountData.Common.csproj" />
-    <ProjectReference Include="..\AccountData.ApiContract\AccountData.ApiContract.csproj" />
   </ItemGroup>
 
   <ItemGroup>

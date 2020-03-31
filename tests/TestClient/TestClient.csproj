@@ -6,9 +6,4 @@
     <AssemblyName>Exchange.AccountData.TestClient</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\AccountData.ApiClient\AccountData.ApiClient.csproj" />
-    <ProjectReference Include="..\..\src\AccountData.ApiContract\AccountData.ApiContract.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -2,7 +2,8 @@
 {
     public class AppConfig
     {
-        public DbConfig Db { get; set; }
-        public RabbitMqConfig RabbitMq { get; set; }
+        public AccountDataServiceSettings AccountDataService { get; set; }
+
+        public JwtConfig Jwt { get; set; }
     }
 }

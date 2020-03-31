@@ -22,10 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AccountData.ApiClient\AccountData.ApiClient.csproj" />
-    <ProjectReference Include="..\..\src\AccountData.ApiContract\AccountData.ApiContract.csproj" />
     <ProjectReference Include="..\..\src\AccountData.Common\AccountData.Common.csproj" />
-    <ProjectReference Include="..\..\src\AccountData.MessagingContract\AccountData.MessagingContract.csproj" />
     <ProjectReference Include="..\..\src\AccountData.Worker\AccountData.Worker.csproj" />
     <ProjectReference Include="..\..\src\AccountData\AccountData.csproj" />
   </ItemGroup>

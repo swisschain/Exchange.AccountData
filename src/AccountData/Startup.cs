@@ -1,60 +1,49 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using MassTransit;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
+﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using AccountData.Common.Configuration;
-using AccountData.Common.Domain.AppFeatureExample;
-using AccountData.Common.HostedServices;
-using AccountData.Common.Persistence;
-using AccountData.GrpcServices;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Autofac;
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Swisschain.Sdk.Server.Common;
 
 namespace AccountData
 {
     public sealed class Startup : SwisschainStartup<AppConfig>
     {
-        public Startup(IConfiguration configuration) : base(configuration)
+        public Startup(IConfiguration configuration)
+            : base(configuration)
         {
+            AddJwtAuth(Config.Jwt.Secret, "exchange.swisschain.io");
         }
 
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
-            base.ConfigureServicesExt(services);
-
-            services.AddPersistence(Config.Db.ConnectionString);
-            services.AddAppFeatureExample();
-
-            services.AddMassTransit(x =>
-            {
-                // TODO: Register commands recipient endpoints. It's just an example.
-                EndpointConvention.Map<ExecuteSomething>(new Uri("queue:exchange-account-data-something-execution"));
-
-                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+            services
+                .AddAutoMapper(typeof(AutoMapperProfile), typeof(Common.Services.AutoMapperProfile))
+                .AddControllersWithViews()
+                .AddFluentValidation(options =>
                 {
-                    cfg.Host(Config.RabbitMq.HostUrl, host =>
-                    {
-                        host.Username(Config.RabbitMq.Username);
-                        host.Password(Config.RabbitMq.Password);
-                    });
-
-                    cfg.SetLoggerFactory(provider.GetRequiredService<ILoggerFactory>());
-                }));
-
-                services.AddHostedService<BusHost>();
-            });
+                    ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
+                    options.RegisterValidatorsFromAssembly(Assembly.GetEntryAssembly());
+                });
         }
 
-        protected override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
+        protected override void ConfigureExt(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            base.RegisterEndpoints(endpoints);
+            app.UseAuthorization();
 
-            endpoints.MapGrpcService<MonitoringService>();
+            app.ApplicationServices.GetRequiredService<AutoMapper.IConfigurationProvider>()
+                .AssertConfigurationIsValid();
+        }
+
+        protected override void ConfigureContainerExt(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule(Config.AccountDataService.BalancesServiceAddress));
+            builder.RegisterModule(new Common.Services.AutofacModule());
         }
     }
 }
