@@ -24,24 +24,12 @@ namespace AccountData.Common.Services
                 .ForMember(dest => dest.Reserved,
                     opt => opt.MapFrom(src => decimal.Parse(src.Reserved, CultureInfo.InvariantCulture)));
 
-            CreateMap<MEBalance, IEnumerable<Balance>>(MemberList.Destination)
-                .ConvertUsing<BalanceToListConverter>();
-
             CreateMap<BalancesGetByAssetIdResponse, Balances>(MemberList.Destination)
                 .ForMember(dest => dest.Timestamp,
                     opt => opt.MapFrom(src => src.Timestamp.ToDateTime()))
                 .ForMember(dest => dest.List,
-                    opt => opt.MapFrom(src => src.Balance));
-        }
-    }
-    
-    class BalanceToListConverter : ITypeConverter<MEBalance, IEnumerable<Balance>>
-    {
-        public IEnumerable<Balance> Convert(MEBalance source, IEnumerable<Balance> destination, ResolutionContext context)
-        {
-            var balance = context.Mapper.Map<Balance>(source);
-
-            return new List<Balance> { balance };
+                    opt => opt.MapFrom((src, dest, destMember, context) => 
+                        new List<Balance> { context.Mapper.Map<Balance>(src.Balance) }));
         }
     }
 }
