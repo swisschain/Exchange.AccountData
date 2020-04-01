@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
 using AccountData.Common.Domain.Services;
 using AutoMapper;
 using MatchingEngine.Client;
+using MatchingEngine.Client.Contracts.Balances;
 
 namespace AccountData.Common.Services
 {
@@ -18,18 +18,23 @@ namespace AccountData.Common.Services
             _mapper = mapper;
         }
 
-        public async Task<IReadOnlyList<Balance>> GetAllAsync(string walletId)
+        public async Task<Balances> GetAllAsync(string walletId)
         {
-            var balances = await _matchingEngineClient.Balances.GetAllAsync(walletId);
+            var request = new BalancesGetAllRequest { WalletId = walletId };
 
-            return _mapper.Map<List<Balance>>(balances);
+            BalancesGetAllResponse balances =
+                await _matchingEngineClient.Balances.GetAllAsync(request);
+
+            return _mapper.Map<Balances>(balances);
         }
 
-        public async Task<Balance> GetByAssetIdAsync(string walletId, string assetId)
+        public async Task<Balances> GetByAssetIdAsync(string walletId, string assetId)
         {
-            var balance = await _matchingEngineClient.Balances.GetByAssetIdAsync(walletId, assetId);
+            var request = new BalancesGetByAssetIdRequest { WalletId = walletId, AssetId = assetId };
 
-            return _mapper.Map<Balance>(balance);
+            BalancesGetByAssetIdResponse balanceResponse = await _matchingEngineClient.Balances.GetByAssetIdAsync(request);
+
+            return _mapper.Map<Balances>(balanceResponse);
         }
     }
 }

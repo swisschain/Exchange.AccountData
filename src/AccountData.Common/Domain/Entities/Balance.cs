@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AccountData.Common.Domain.Entities
 {
@@ -21,10 +22,5 @@ namespace AccountData.Common.Domain.Entities
         /// The amount that currently are reserved.
         /// </summary>
         public decimal Reserved { get; set; }
-
-        /// <summary>
-        /// The date and time of balance.
-        /// </summary>
-        public DateTime Timestamp { get; set; }
     }
 }

@@ -8,7 +8,9 @@ namespace AccountData
     {
         public AutoMapperProfile()
         {
-            CreateMap<Balance, BalanceModel>(MemberList.Source);
+            CreateMap<Balance, BalanceModel>(MemberList.Destination);
+
+            CreateMap<Balances, BalancesModel>(MemberList.Destination);
         }
     }
 }
