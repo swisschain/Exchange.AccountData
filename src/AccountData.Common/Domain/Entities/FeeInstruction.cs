@@ -1,4 +1,6 @@
-﻿namespace AccountData.Common.Domain.Entities
+﻿using AccountData.Common.Domain.Entities.Enums;
+
+namespace AccountData.Common.Domain.Entities
 {
     public class FeeInstruction
     {
@@ -14,11 +16,11 @@
 
         public string AssetsIds { get; set; }
 
-        public int FeeType { get; set; }
+        public FeeType FeeType { get; set; }
 
         public string Size { get; set; }
 
-        public int SizeType { get; set; }
+        public FeeSizeType SizeType { get; set; }
 
         public string MakerSize { get; set; }
 

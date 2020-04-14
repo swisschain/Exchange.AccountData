@@ -1,4 +1,5 @@
 ﻿using System;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.WebApi.Models.Trade
 {
@@ -36,7 +37,7 @@ namespace AccountData.WebApi.Models.Trade
 
         public string RelativeSpread { get; set; }
 
-        public int Role { get; set; }
+        public TradeRole Role { get; set; }
 
         public DateTimeOffset Timestamp { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Repositories.Entities
 {
@@ -73,7 +74,7 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("role", TypeName = "int2")]
-        public int Role { get; set; }
+        public TradeRole Role { get; set; }
 
         [Required]
         [Column("timestamp", TypeName = "timestamp")]

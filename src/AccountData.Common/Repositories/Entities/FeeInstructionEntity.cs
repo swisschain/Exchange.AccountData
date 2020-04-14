@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Repositories.Entities
 {
@@ -28,13 +29,13 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("fee_type", TypeName = "int2")]
-        public int FeeType { get; set; }
+        public FeeType FeeType { get; set; }
 
         [Column("size", TypeName = "varchar(255)")]
         public string Size { get; set; }
 
         [Column("size_type", TypeName = "int2")]
-        public int SizeType { get; set; }
+        public FeeSizeType SizeType { get; set; }
 
         [Column("maker_size", TypeName = "varchar(255)")]
         public string MakerSize { get; set; }

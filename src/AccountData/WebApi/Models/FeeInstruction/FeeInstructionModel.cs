@@ -1,4 +1,4 @@
-﻿using System;
+﻿using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.WebApi.Models.FeeInstruction
 {
@@ -16,11 +16,11 @@ namespace AccountData.WebApi.Models.FeeInstruction
 
         public string AssetsIds { get; set; }
 
-        public int FeeType { get; set; }
+        public FeeType FeeType { get; set; }
 
         public string Size { get; set; }
 
-        public int SizeType { get; set; }
+        public FeeSizeType SizeType { get; set; }
 
         public string MakerSize { get; set; }
 

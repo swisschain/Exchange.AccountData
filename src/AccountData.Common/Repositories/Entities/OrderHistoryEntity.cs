@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Repositories.Entities
 {
@@ -25,7 +26,7 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("order_type", TypeName = "int2")]
-        public int OrderType { get; set; }
+        public OrderType OrderType { get; set; }
 
         [Required]
         [Column("side", TypeName = "int2")]
@@ -43,7 +44,7 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("status", TypeName = "int2")]
-        public int Status { get; set; }
+        public OrderStatus Status { get; set; }
 
         [Column("reject_reason", TypeName = "varchar(255)")]
         public string RejectReason { get; set; }
@@ -77,7 +78,7 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("time_in_force", TypeName = "int2")]
-        public int TimeInForce { get; set; }
+        public OrderTimeInForce TimeInForce { get; set; }
 
         [Column("expiry_time", TypeName = "varchar(255)")]
         public string ExpiryTime { get; set; }

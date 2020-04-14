@@ -1,4 +1,5 @@
 ﻿using System;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Domain.Entities
 {
@@ -12,9 +13,9 @@ namespace AccountData.Common.Domain.Entities
 
         public string AssetPairId { get; set; }
 
-        public int OrderType { get; set; }
+        public OrderType OrderType { get; set; }
 
-        public int Side { get; set; }
+        public OrderSide Side { get; set; }
 
         public string Volume { get; set; }
 
@@ -22,7 +23,7 @@ namespace AccountData.Common.Domain.Entities
 
         public string Price { get; set; }
 
-        public int Status { get; set; }
+        public OrderStatus Status { get; set; }
 
         public string RejectReason { get; set; }
 
@@ -42,7 +43,7 @@ namespace AccountData.Common.Domain.Entities
 
         public string UpperPrice { get; set; }
 
-        public int TimeInForce { get; set; }
+        public OrderTimeInForce TimeInForce { get; set; }
 
         public string ExpiryTime { get; set; }
     }
