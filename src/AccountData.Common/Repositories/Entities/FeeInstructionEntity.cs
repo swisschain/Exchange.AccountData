@@ -11,10 +11,6 @@ namespace AccountData.Common.Repositories.Entities
         public long Id { get; set; }
 
         [Required]
-        [Column("message_id", TypeName = "bigint")]
-        public long MessageId { get; set; }
-
-        [Required]
         [Column("broker_id", TypeName = "varchar(255)")]
         public string BrokerId { get; set; }
 
@@ -48,8 +44,5 @@ namespace AccountData.Common.Repositories.Entities
 
         [Column("maker_fee_modificator", TypeName = "varchar(255)")]
         public string MakerFeeModificator { get; set; }
-
-        [Column("index", TypeName = "int8")]
-        public long Index { get; set; }
     }
 }

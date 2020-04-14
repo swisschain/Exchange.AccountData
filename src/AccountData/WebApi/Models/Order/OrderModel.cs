@@ -6,8 +6,6 @@ namespace AccountData.WebApi.Models.Order
     {
         public long Id { get; set; }
 
-        public long MessageId { get; set; }
-
         public string WalletId { get; set; }
 
         public string AssetPairId { get; set; }

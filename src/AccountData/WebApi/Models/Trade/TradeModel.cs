@@ -6,8 +6,6 @@ namespace AccountData.WebApi.Models.Trade
     {
         public long Id { get; set; }
 
-        public long MessageId { get; set; }
-
         public string BrokerId { get; set; }
 
         public string TradeId { get; set; }
@@ -33,8 +31,6 @@ namespace AccountData.WebApi.Models.Trade
         public string BaseVolume { get; set; }
 
         public string QuotingVolume { get; set; }
-
-        public long Index { get; set; }
 
         public string AbsoluteSpread { get; set; }
 

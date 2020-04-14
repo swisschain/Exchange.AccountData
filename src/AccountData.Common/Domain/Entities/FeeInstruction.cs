@@ -4,8 +4,6 @@
     {
         public long Id { get; set; }
 
-        public long MessageId { get; set; }
-
         public string BrokerId { get; set; }
 
         public long OrderId { get; set; }
@@ -27,7 +25,5 @@
         public int MakerSizeType { get; set; }
 
         public string MakerFeeModificator { get; set; }
-
-        public long Index { get; set; }
     }
 }

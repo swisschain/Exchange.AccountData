@@ -4,8 +4,6 @@
     {
         public long Id { get; set; }
 
-        public long MessageId { get; set; }
-
         public string BrokerId { get; set; }
 
         public long OrderId { get; set; }
@@ -19,7 +17,5 @@
         public string Volume { get; set; }
 
         public string FeeCoefficient { get; set; }
-
-        public long Index { get; set; }
     }
 }

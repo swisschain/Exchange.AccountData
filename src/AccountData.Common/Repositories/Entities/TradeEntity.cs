@@ -12,10 +12,6 @@ namespace AccountData.Common.Repositories.Entities
         public long Id { get; set; }
 
         [Required]
-        [Column("message_id", TypeName = "bigint")]
-        public long MessageId { get; set; }
-
-        [Required]
         [Column("broker_id", TypeName = "varchar(255)")]
         public string BrokerId { get; set; }
 
@@ -66,10 +62,6 @@ namespace AccountData.Common.Repositories.Entities
         [Required]
         [Column("quoting_volume", TypeName = "varchar(255)")]
         public string QuotingVolume { get; set; }
-
-        [Required]
-        [Column("index", TypeName = "int8")]
-        public long Index { get; set; }
 
         [Required]
         [Column("absolute_spread", TypeName = "varchar(255)")]
