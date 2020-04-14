@@ -19,6 +19,8 @@ namespace AccountData.Common.Repositories.Context
 
         internal DbSet<OrderEntity> Orders { get; set; }
 
+        internal DbSet<OrderHistoryEntity> OrdersHistory { get; set; }
+
         internal DbSet<TradeEntity> Trades { get; set; }
 
         public DataContext()
@@ -50,6 +52,7 @@ namespace AccountData.Common.Repositories.Context
             modelBuilder.Entity<FeeInstructionEntity>();
             modelBuilder.Entity<FeeTransferEntity>();
             modelBuilder.Entity<OrderEntity>();
+            modelBuilder.Entity<OrderHistoryEntity>();
             modelBuilder.Entity<TradeEntity>();
         }
     }

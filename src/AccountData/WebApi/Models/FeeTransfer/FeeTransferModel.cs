@@ -8,18 +8,20 @@ namespace AccountData.WebApi.Models.FeeTransfer
 
         public long MessageId { get; set; }
 
-        public string WalletId { get; set; }
+        public string BrokerId { get; set; }
 
-        public string AssetId { get; set; }
+        public long OrderId { get; set; }
 
-        public string Balance { get; set; }
+        public string SourceWalletId { get; set; }
 
-        public string OldBalance { get; set; }
+        public string TargetWalletId { get; set; }
 
-        public string Reserved { get; set; }
+        public string AssetsId { get; set; }
 
-        public string OldReserved { get; set; }
+        public string Volume { get; set; }
 
-        public DateTimeOffset Timestamp { get; set; }
+        public string FeeCoefficient { get; set; }
+
+        public long Index { get; set; }
     }
 }

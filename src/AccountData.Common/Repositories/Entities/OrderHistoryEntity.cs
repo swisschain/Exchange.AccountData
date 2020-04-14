@@ -1,0 +1,89 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AccountData.Common.Repositories.Entities
+{
+    [Table("orders_history")]
+    public class OrderHistoryEntity
+    {
+        [Key]
+        [Column("id", TypeName = "int8")]
+        public long Id { get; set; }
+
+        [Required]
+        [Column("message_id", TypeName = "bigint")]
+        public long MessageId { get; set; }
+
+        [Required]
+        [Column("broker_id", TypeName = "varchar(255)")]
+        public string BrokerId { get; set; }
+
+        [Required]
+        [Column("wallet_id", TypeName = "varchar(255)")]
+        public string WalletId { get; set; }
+
+        [Required]
+        [Column("asset_pair_id", TypeName = "varchar(255)")]
+        public string AssetPairId { get; set; }
+
+        [Required]
+        [Column("order_type", TypeName = "int2")]
+        public int OrderType { get; set; }
+
+        [Required]
+        [Column("side", TypeName = "int2")]
+        public int Side { get; set; }
+
+        [Required]
+        [Column("volume", TypeName = "varchar(255)")]
+        public string Volume { get; set; }
+
+        [Column("remaining_volume", TypeName = "varchar(255)")]
+        public string RemainingVolume { get; set; }
+
+        [Column("price", TypeName = "varchar(255)")]
+        public string Price { get; set; }
+
+        [Required]
+        [Column("status", TypeName = "int2")]
+        public int Status { get; set; }
+
+        [Column("reject_reason", TypeName = "varchar(255)")]
+        public string RejectReason { get; set; }
+
+        [Required]
+        [Column("status_date", TypeName = "timestamp")]
+        public DateTimeOffset StatusDate { get; set; }
+
+        [Required]
+        [Column("created_at", TypeName = "timestamp")]
+        public DateTimeOffset CreatedAt { get; set; }
+
+        [Required]
+        [Column("registered_at", TypeName = "timestamp")]
+        public DateTimeOffset RegisteredAt { get; set; }
+
+        [Column("last_match_time", TypeName = "timestamp")]
+        public DateTimeOffset LastMatchTime { get; set; }
+
+        [Column("lower_limit_price", TypeName = "varchar(255)")]
+        public string LowerLimitPrice { get; set; }
+
+        [Column("lower_price", TypeName = "varchar(255)")]
+        public string LowerPrice { get; set; }
+
+        [Column("upper_limit_price", TypeName = "varchar(255)")]
+        public string UpperLimitPrice { get; set; }
+
+        [Column("upper_price", TypeName = "varchar(255)")]
+        public string UpperPrice { get; set; }
+
+        [Required]
+        [Column("time_in_force", TypeName = "int2")]
+        public int TimeInForce { get; set; }
+
+        [Column("expiry_time", TypeName = "varchar(255)")]
+        public string ExpiryTime { get; set; }
+    }
+}

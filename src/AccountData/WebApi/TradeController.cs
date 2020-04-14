@@ -15,7 +15,7 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/balance-updates")]
+    [Route("api/trade")]
     public class TradeController : ControllerBase
     {
         private readonly ITradeService _tradeService;

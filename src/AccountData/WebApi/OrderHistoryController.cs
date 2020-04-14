@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Services;
-using AccountData.WebApi.Models.FeeTransfer;
+using AccountData.WebApi.Models.OrderHistory;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,22 +15,22 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/fee-transfer")]
-    public class FeeTransferController : ControllerBase
+    [Route("api/order-history")]
+    public class OrderHistoryController : ControllerBase
     {
-        private readonly IFeeTransferService _feeTransferService;
+        private readonly IOrderHistoryService _orderHistoryService;
         private readonly IMapper _mapper;
 
-        public FeeTransferController(IFeeTransferService feeTransferService, IMapper mapper)
+        public OrderHistoryController(IOrderHistoryService orderHistoryService, IMapper mapper)
         {
-            _feeTransferService = feeTransferService;
+            _orderHistoryService = orderHistoryService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Paginated<FeeTransferModel, long>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<OrderHistoryModel, long>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetManyAsync([FromQuery] FeeTransferRequestMany request)
+        public async Task<IActionResult> GetManyAsync([FromQuery] OrderHistoryRequestMany request)
         {
             if (request.Limit > 1000)
             {
@@ -45,26 +45,26 @@ namespace AccountData.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var domains = await _feeTransferService.GetAllAsync(brokerId, request.Id, request.SourceWalletId, request.TargetWalletId, request.OrderId, request.AssetId, sortOrder, request.Cursor, request.Limit);
+            var domains = await _orderHistoryService.GetAllAsync(brokerId, request.Id, request.WalletId, request.AssetPairId, sortOrder, request.Cursor, request.Limit);
 
-            var result = _mapper.Map<List<FeeTransferModel>>(domains);
+            var result = _mapper.Map<List<OrderHistoryModel>>(domains);
 
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
 
         [HttpGet("{accountId}")]
-        [ProducesResponseType(typeof(FeeTransferModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrderHistoryModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
 
-            var domain = await _feeTransferService.GetByIdAsync(brokerId, id);
+            var domain = await _orderHistoryService.GetByIdAsync(brokerId, id);
 
             if (domain == null)
                 return NotFound();
 
-            var model = _mapper.Map<FeeTransferModel>(domain);
+            var model = _mapper.Map<OrderHistoryModel>(domain);
 
             return Ok(model);
         }

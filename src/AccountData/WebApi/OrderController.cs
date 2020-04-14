@@ -15,7 +15,7 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/balance-updates")]
+    [Route("api/order")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;

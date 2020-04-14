@@ -15,7 +15,7 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/balance-updates")]
+    [Route("api/fee-instruction")]
     public class FeeInstructionController : ControllerBase
     {
         private readonly IFeeInstructionService _feeInstructionService;
