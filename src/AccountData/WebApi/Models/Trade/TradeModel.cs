@@ -9,6 +9,8 @@ namespace AccountData.WebApi.Models.Trade
 
         public string BrokerId { get; set; }
 
+        public string ExternalId { get; set; }
+
         public string TradeId { get; set; }
 
         public string WalletId { get; set; }

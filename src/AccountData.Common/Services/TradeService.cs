@@ -21,10 +21,10 @@ namespace AccountData.Common.Services
         }
 
         public Task<IReadOnlyList<Trade>> GetAllAsync(
-            string brokerId, long id, string walletId, string tradeId, string baseAssetId, string quotingAssetId,
+            string brokerId, long id, string externalId, string walletId, string baseAssetId, string quotingAssetId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            return _tradeRepository.GetAllAsync(brokerId, id, walletId, tradeId, baseAssetId, quotingAssetId,
+            return _tradeRepository.GetAllAsync(brokerId, id, externalId, walletId, baseAssetId, quotingAssetId,
                 sortOrder, cursor, limit);
         }
 

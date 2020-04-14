@@ -24,7 +24,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<Trade>> GetAllAsync(
-            string brokerId, long id, string walletId, string tradeId, string baseAssetId, string quotingAssetId,
+            string brokerId, long id, string externalId, string walletId, string baseAssetId, string quotingAssetId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -36,8 +36,8 @@ namespace AccountData.Common.Repositories
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
-                if (!string.IsNullOrWhiteSpace(tradeId))
-                    query = query.Where(x => x.TradeId.ToUpper() == tradeId.ToUpper());
+                if (!string.IsNullOrWhiteSpace(externalId))
+                    query = query.Where(x => x.ExternalId.ToUpper() == externalId.ToUpper());
 
                 if (!string.IsNullOrWhiteSpace(walletId))
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
