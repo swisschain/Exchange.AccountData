@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AccountData.Common.Domain.Services;
-using AccountData.WebApi.Models.AccountData;
+using AccountData.WebApi.Models.Balance;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

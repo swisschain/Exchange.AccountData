@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using AccountData.Common.Domain.Entities;
 
-namespace AccountData.WebApi.Models.AccountData
+namespace AccountData.WebApi.Models.Balance
 {
     /// <summary>
     /// Represents balances of many assets.
@@ -22,6 +21,6 @@ namespace AccountData.WebApi.Models.AccountData
         /// <summary>
         /// List of balances.
         /// </summary>
-        public IReadOnlyList<Balance> List { get; set; }
+        public IReadOnlyList<BalanceModel> List { get; set; }
     }
 }

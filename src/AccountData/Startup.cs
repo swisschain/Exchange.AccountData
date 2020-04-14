@@ -43,7 +43,7 @@ namespace AccountData
         protected override void ConfigureContainerExt(ContainerBuilder builder)
         {
             builder.RegisterModule(new AutofacModule(Config.AccountDataService.BalancesServiceAddress));
-            builder.RegisterModule(new Common.Services.AutofacModule());
+            builder.RegisterModule(new Common.Services.AutofacModule(Config));
         }
     }
 }

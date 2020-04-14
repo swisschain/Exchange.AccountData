@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AccountData.WebApi.Models.AccountData
+﻿namespace AccountData.WebApi.Models.Balance
 {
     /// <summary>
     /// Represents a balance of an asset.
