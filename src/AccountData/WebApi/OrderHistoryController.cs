@@ -14,8 +14,9 @@ using Swisschain.Sdk.Server.WebApi.Pagination;
 namespace AccountData.WebApi
 {
     [Authorize]
-    [ApiController]
-    [Route("api/order-history")]
+    // commented out until we really need that controller
+    //[ApiController]
+    //[Route("api/order-history")]
     public class OrderHistoryController : ControllerBase
     {
         private readonly IOrderHistoryService _orderHistoryService;
@@ -27,7 +28,7 @@ namespace AccountData.WebApi
             _mapper = mapper;
         }
 
-        [HttpGet]
+        //[HttpGet]
         [ProducesResponseType(typeof(Paginated<OrderHistoryModel, long>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetManyAsync([FromQuery] OrderHistoryRequestMany request)
@@ -52,7 +53,7 @@ namespace AccountData.WebApi
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
 
-        [HttpGet("{accountId}")]
+        //[HttpGet("{accountId}")]
         [ProducesResponseType(typeof(OrderHistoryModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByIdAsync(long id)
