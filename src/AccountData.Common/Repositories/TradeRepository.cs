@@ -24,9 +24,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<Trade>> GetAllAsync(
-            string brokerId, long id, string tradeId, string walletId, string oppositeWalletId,
-            long orderId, string oppositeOrderId, string oppositeExternalOrderId,
-            long orderHistoryId, string baseAssetId, string quotingAssetId,
+            string brokerId, long id, string walletId, string tradeId, string baseAssetId, string quotingAssetId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -43,21 +41,6 @@ namespace AccountData.Common.Repositories
 
                 if (!string.IsNullOrWhiteSpace(walletId))
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
-
-                if (!string.IsNullOrWhiteSpace(oppositeWalletId))
-                    query = query.Where(x => x.OppositeWalletId.ToUpper() == oppositeWalletId.ToUpper());
-
-                if (orderId != default)
-                    query = query.Where(x => x.OrderId == orderId);
-
-                if (!string.IsNullOrWhiteSpace(oppositeOrderId))
-                    query = query.Where(x => x.OppositeOrderId.ToUpper() == oppositeOrderId.ToUpper());
-
-                if (!string.IsNullOrWhiteSpace(oppositeExternalOrderId))
-                    query = query.Where(x => x.OppositeExternalOrderId.ToUpper() == oppositeExternalOrderId.ToUpper());
-
-                if (orderHistoryId != default)
-                    query = query.Where(x => x.OrderHistoryId == orderHistoryId);
 
                 if (!string.IsNullOrEmpty(baseAssetId))
                     query = query.Where(x => x.BaseAssetId.Contains(baseAssetId, StringComparison.InvariantCultureIgnoreCase));
