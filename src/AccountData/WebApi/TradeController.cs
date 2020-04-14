@@ -54,7 +54,7 @@ namespace AccountData.WebApi
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
 
-        [HttpGet("{accountId}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(TradeModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByIdAsync(long id)
