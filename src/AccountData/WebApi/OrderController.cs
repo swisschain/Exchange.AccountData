@@ -45,7 +45,10 @@ namespace AccountData.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var domains = await _orderService.GetAllAsync(brokerId, request.Id, request.WalletId, request.AssetPairId, sortOrder, request.Cursor, request.Limit);
+            var domains = await _orderService.GetAllAsync(
+                brokerId, request.Id, request.ExternalId, request.WalletId, request.AssetPairId,
+                request.OrderType, request.Side, request.Status, request.TimeInForce,
+                sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<OrderModel>>(domains);
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
+using AccountData.Common.Domain.Entities.Enums;
 using AccountData.Common.Domain.Repositories;
 using AccountData.Common.Repositories.Context;
 using AccountData.Common.Repositories.Entities;
@@ -24,7 +25,8 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<Order>> GetAllAsync(
-            string brokerId, long id, string walletId, string assetPairId,
+            string brokerId, long id, string externalId, string walletId, string assetPairId,
+            OrderType? orderType, OrderSide? side, OrderStatus? status, OrderTimeInForce? timeInForce,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -36,11 +38,26 @@ namespace AccountData.Common.Repositories
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
+                if (!string.IsNullOrWhiteSpace(externalId))
+                    query = query.Where(x => x.ExternalId.ToUpper() == externalId.ToUpper());
+
                 if (!string.IsNullOrWhiteSpace(walletId))
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
 
                 if (!string.IsNullOrEmpty(assetPairId))
                     query = query.Where(x => x.AssetPairId.Contains(assetPairId, StringComparison.InvariantCultureIgnoreCase));
+
+                if (orderType.HasValue)
+                    query = query.Where(x => x.OrderType == orderType);
+
+                if (side.HasValue)
+                    query = query.Where(x => x.Side == side);
+
+                if (status.HasValue)
+                    query = query.Where(x => x.Status == status);
+
+                if (timeInForce.HasValue)
+                    query = query.Where(x => x.TimeInForce == timeInForce);
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

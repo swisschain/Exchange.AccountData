@@ -1,4 +1,5 @@
-﻿using Swisschain.Sdk.Server.WebApi.Pagination;
+﻿using AccountData.Common.Domain.Entities.Enums;
+using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi.Models.Order
 {
@@ -6,8 +7,21 @@ namespace AccountData.WebApi.Models.Order
     {
         public long Id { get; set; }
 
+        public string ExternalId { get; set; }
+
         public string WalletId { get; set; }
 
         public string AssetPairId { get; set; }
+
+        public OrderType? OrderType { get; set; }
+
+
+        public OrderSide? Side { get; set; }
+
+
+        public OrderStatus? Status { get; set; }
+
+
+        public OrderTimeInForce? TimeInForce { get; set; }
     }
 }
