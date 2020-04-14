@@ -10,7 +10,7 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/balances")]
+    [Route("api/balance")]
     public class BalancesController : ControllerBase
     {
         private readonly IBalancesService _balancesService;

@@ -15,7 +15,7 @@ namespace AccountData.WebApi
 {
     [Authorize]
     [ApiController]
-    [Route("api/balance-updates")]
+    [Route("api/balance-update")]
     public class BalanceUpdatesController : ControllerBase
     {
         private readonly IBalanceUpdateService _balanceUpdateService;
