@@ -17,6 +17,10 @@ namespace AccountData.Common.Repositories.Entities
         public string BrokerId { get; set; }
 
         [Required]
+        [Column("external_id", TypeName = "varchar(255)")]
+        public string ExternalId { get; set; }
+
+        [Required]
         [Column("wallet_id", TypeName = "varchar(255)")]
         public string WalletId { get; set; }
 
