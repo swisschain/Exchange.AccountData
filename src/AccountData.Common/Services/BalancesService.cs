@@ -28,9 +28,9 @@ namespace AccountData.Common.Services
             return _mapper.Map<Balances>(balances);
         }
 
-        public async Task<Balances> GetByAssetIdAsync(string brokerId, string walletId, string assetId)
+        public async Task<Balances> GetByAssetIdAsync(string brokerId, string walletId, string asset)
         {
-            var request = new BalancesGetByAssetIdRequest { BrokerId = brokerId, WalletId = walletId, AssetId = assetId };
+            var request = new BalancesGetByAssetIdRequest { BrokerId = brokerId, WalletId = walletId, AssetId = asset };
 
             BalancesGetByAssetIdResponse balanceResponse = await _matchingEngineClient.Balances.GetByAssetIdAsync(request);
 

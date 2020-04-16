@@ -47,17 +47,17 @@ namespace AccountData.WebApi
             return Ok(model);
         }
 
-        [HttpGet("{walletId}/assets/{assetId}")]
+        [HttpGet("{walletId}/assets/{asset}")]
         [ProducesResponseType(typeof(BalancesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByAssetIdAsync(string walletId, string assetId)
+        public async Task<IActionResult> GetByAssetAsync(string walletId, string asset)
         {
             if (string.IsNullOrWhiteSpace(walletId))
                 return NotFound();
 
             var brokerId = User.GetTenantId();
 
-            var balances = await _balancesService.GetByAssetIdAsync(brokerId, walletId, assetId);
+            var balances = await _balancesService.GetByAssetIdAsync(brokerId, walletId, asset);
 
             if (balances == null)
                 return NotFound();

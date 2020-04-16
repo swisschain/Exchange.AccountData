@@ -8,6 +8,6 @@ namespace AccountData.Common.Domain.Services
     {
         Task<Balances> GetAllAsync(string brokerId, string walletId);
 
-        Task<Balances> GetByAssetIdAsync(string brokerId, string walletId, string assetId);
+        Task<Balances> GetByAssetIdAsync(string brokerId, string walletId, string asset);
     }
 }

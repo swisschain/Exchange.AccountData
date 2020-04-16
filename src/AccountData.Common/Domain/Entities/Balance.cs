@@ -11,7 +11,7 @@ namespace AccountData.Common.Domain.Entities
         /// <summary>
         /// The asset id.
         /// </summary>
-        public string AssetId { get; set; }
+        public string Asset { get; set; }
 
         /// <summary>
         /// The amount of balance.

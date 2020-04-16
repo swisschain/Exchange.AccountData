@@ -23,6 +23,8 @@ namespace AccountData.Common.Services
                 .SingleInstance();
 
             LoadRepositories(builder);
+
+            LoadServices(builder);
         }
 
         protected void LoadRepositories(ContainerBuilder builder)
@@ -34,6 +36,53 @@ namespace AccountData.Common.Services
 
             builder.RegisterType<BalanceUpdateRepository>()
                 .As<IBalanceUpdateRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<FeeInstructionRepository>()
+                .As<IFeeInstructionRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<FeeTransferRepository>()
+                .As<IFeeTransferRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<OrderRepository>()
+                .As<IOrderRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<OrderHistoryRepository>()
+                .As<IOrderHistoryRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<TradeRepository>()
+                .As<ITradeRepository>()
+                .SingleInstance();
+        }
+
+        protected void LoadServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<BalanceUpdateService>()
+                .As<IBalanceUpdateService>()
+                .SingleInstance();
+
+            builder.RegisterType<FeeInstructionService>()
+                .As<IFeeInstructionService>()
+                .SingleInstance();
+
+            builder.RegisterType<FeeTransferService>()
+                .As<IFeeTransferService>()
+                .SingleInstance();
+
+            builder.RegisterType<OrderService>()
+                .As<IOrderService>()
+                .SingleInstance();
+
+            builder.RegisterType<OrderHistoryService>()
+                .As<IOrderHistoryService>()
+                .SingleInstance();
+
+            builder.RegisterType<TradeService>()
+                .As<ITradeService>()
                 .SingleInstance();
         }
     }

@@ -8,9 +8,9 @@ namespace AccountData.WebApi.Models.Balance
     public class BalanceModel
     {
         /// <summary>
-        /// The asset id.
+        /// The asset symbol.
         /// </summary>
-        public string AssetId { get; set; }
+        public string Asset { get; set; }
 
         /// <summary>
         /// The amount of balance.

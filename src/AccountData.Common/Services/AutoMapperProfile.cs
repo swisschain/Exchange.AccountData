@@ -45,6 +45,7 @@ namespace AccountData.Common.Services
                     opt => opt.MapFrom(src => src.Balances));
 
             CreateMap<MEBalance, Balance>(MemberList.Destination)
+                .ForMember(dest => dest.Asset, opt => opt.MapFrom(src => src.AssetId))
                 .ForMember(x => x.Timestamp, opt => opt.Ignore())
                 .ForMember(dest => dest.Amount,
                     opt => opt.MapFrom(src => decimal.Parse(src.Amount, CultureInfo.InvariantCulture)))
