@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,17 +23,14 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<Trade>> GetAllAsync(
-            string brokerId, long id, string externalId, string walletId, string baseAssetId, string quotingAssetId,
-            ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
+            string brokerId, string externalId, string walletId, string baseAssetId, string quotingAssetId,
+            ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
                 IQueryable<TradeEntity> query = context.Trades;
 
                 query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
-
-                if (id != default)
-                    query = query.Where(x => x.Id == id);
 
                 if (!string.IsNullOrWhiteSpace(externalId))
                     query = query.Where(x => x.ExternalId.ToUpper() == externalId.ToUpper());
@@ -43,22 +39,22 @@ namespace AccountData.Common.Repositories
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
 
                 if (!string.IsNullOrEmpty(baseAssetId))
-                    query = query.Where(x => x.BaseAssetId.Contains(baseAssetId, StringComparison.InvariantCultureIgnoreCase));
+                    query = query.Where(x => x.BaseAssetId.ToUpper() == baseAssetId.ToUpper());
 
                 if (!string.IsNullOrEmpty(quotingAssetId))
-                    query = query.Where(x => x.QuotingAssetId.Contains(quotingAssetId, StringComparison.InvariantCultureIgnoreCase));
+                    query = query.Where(x => x.QuotingAssetId.ToUpper() == quotingAssetId.ToUpper());
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {
-                    if (cursor != default)
-                        query = query.Where(x => x.Id >= cursor);
+                    if (cursor != null)
+                        query = query.Where(x => x.ExternalId.CompareTo(cursor) >= 0);
 
                     query = query.OrderBy(x => x.Id);
                 }
                 else
                 {
-                    if (cursor != default)
-                        query = query.Where(x => x.Id < cursor);
+                    if (cursor != null)
+                        query = query.Where(x => x.ExternalId.CompareTo(cursor) < 0);
 
                     query = query.OrderByDescending(x => x.Id);
                 }

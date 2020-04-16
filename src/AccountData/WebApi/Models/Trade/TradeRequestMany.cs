@@ -2,11 +2,8 @@
 
 namespace AccountData.WebApi.Models.Trade
 {
-    public class TradeRequestMany : PaginationRequest<long>
+    public class TradeRequestMany : PaginationRequest<string>
     {
-        public long Id { get; set; }
-
-
         public string ExternalId { get; set; }
 
 

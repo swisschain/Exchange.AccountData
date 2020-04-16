@@ -28,7 +28,7 @@ namespace AccountData.WebApi
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Paginated<TradeModel, long>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<TradeModel, string>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetManyAsync([FromQuery] TradeRequestMany request)
         {
@@ -45,13 +45,13 @@ namespace AccountData.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var domains = await _tradeService.GetAllAsync(brokerId, request.Id, request.ExternalId, request.WalletId,
+            var domains = await _tradeService.GetAllAsync(brokerId, request.ExternalId, request.WalletId,
                 request.BaseAssetId, request.QuotingAssetId,
                 sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<TradeModel>>(domains);
 
-            return Ok(result.Paginate(request, Url, x => x.Id));
+            return Ok(result.Paginate(request, Url, x => x.ExternalId));
         }
 
         [HttpGet("{id}")]
