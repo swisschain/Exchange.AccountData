@@ -22,5 +22,10 @@ namespace AccountData.Common.Domain.Entities
         /// The amount that currently are reserved.
         /// </summary>
         public decimal Reserved { get; set; }
+
+        /// <summary>
+        /// Timestamp.
+        /// </summary>
+        public DateTime Timestamp { get; set; }
     }
 }

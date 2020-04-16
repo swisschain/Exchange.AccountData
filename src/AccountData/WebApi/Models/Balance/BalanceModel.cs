@@ -1,4 +1,6 @@
-﻿namespace AccountData.WebApi.Models.Balance
+﻿using System;
+
+namespace AccountData.WebApi.Models.Balance
 {
     /// <summary>
     /// Represents a balance of an asset.
@@ -19,5 +21,10 @@
         /// The amount that currently are reserved.
         /// </summary>
         public decimal Reserved { get; set; }
+
+        /// <summary>
+        /// Timestamp.
+        /// </summary>
+        public DateTime Timestamp { get; set; }
     }
 }
