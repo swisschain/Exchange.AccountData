@@ -14,7 +14,7 @@ namespace AccountData.WebApi.Models.FeeTransfer
 
         public string TargetWalletId { get; set; }
 
-        public string AssetsId { get; set; }
+        public string AssetId { get; set; }
 
         public string Volume { get; set; }
 

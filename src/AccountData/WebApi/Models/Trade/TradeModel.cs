@@ -9,7 +9,7 @@ namespace AccountData.WebApi.Models.Trade
 
         public string BrokerId { get; set; }
 
-        public string ExternalId { get; set; }
+        public string ExternalOrderId { get; set; }
 
         public string TradeId { get; set; }
 
@@ -41,6 +41,6 @@ namespace AccountData.WebApi.Models.Trade
 
         public TradeRole Role { get; set; }
 
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

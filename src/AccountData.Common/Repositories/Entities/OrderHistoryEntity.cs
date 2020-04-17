@@ -55,18 +55,18 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("status_date", TypeName = "timestamp")]
-        public DateTimeOffset StatusDate { get; set; }
+        public DateTime StatusDate { get; set; }
 
         [Required]
         [Column("created_at", TypeName = "timestamp")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [Required]
         [Column("registered_at", TypeName = "timestamp")]
-        public DateTimeOffset RegisteredAt { get; set; }
+        public DateTime RegisteredAt { get; set; }
 
         [Column("last_match_time", TypeName = "timestamp")]
-        public DateTimeOffset LastMatchTime { get; set; }
+        public DateTime LastMatchTime { get; set; }
 
         [Column("lower_limit_price", TypeName = "varchar(255)")]
         public string LowerLimitPrice { get; set; }

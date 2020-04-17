@@ -45,7 +45,7 @@ namespace AccountData.Common.Repositories
                     query = query.Where(x => x.OrderId == orderId);
 
                 if (!string.IsNullOrWhiteSpace(assetId))
-                    query = query.Where(x => x.AssetsId.ToUpper() == assetId.ToUpper());
+                    query = query.Where(x => x.AssetId.ToUpper() == assetId.ToUpper());
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

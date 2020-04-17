@@ -44,13 +44,13 @@ namespace AccountData.WebApi
                 : ListSortDirection.Descending;
 
             var brokerId = User.GetTenantId();
-
+            
             var domains = await _orderService.GetAllAsync(
                 brokerId, request.Id, request.ExternalId, request.WalletId, request.AssetPairId,
                 request.OrderType, request.Side, request.Status, request.TimeInForce,
                 sortOrder, request.Cursor, request.Limit);
 
-            var result = _mapper.Map<List<OrderModel>>(domains);
+            var result = _mapper.Map<OrderModel[]>(domains);
 
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
@@ -63,7 +63,7 @@ namespace AccountData.WebApi
             var brokerId = User.GetTenantId();
 
             var domain = await _orderService.GetByIdAsync(brokerId, id);
-
+            
             if (domain == null)
                 return NotFound();
 

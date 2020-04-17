@@ -40,7 +40,7 @@ namespace AccountData.Common.Repositories
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
 
                 if (!string.IsNullOrEmpty(assetPairId))
-                    query = query.Where(x => x.AssetPairId.Contains(assetPairId, StringComparison.InvariantCultureIgnoreCase));
+                    query = query.Where(x => x.AssetPairId == assetPairId);
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

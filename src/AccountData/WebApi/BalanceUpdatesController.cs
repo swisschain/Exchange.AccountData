@@ -44,7 +44,7 @@ namespace AccountData.WebApi
                 : ListSortDirection.Descending;
 
             var brokerId = User.GetTenantId();
-
+            
             var domains = await _balanceUpdateService.GetAllAsync(brokerId, request.Id, request.WalletId, request.AssetId, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<BalanceUpdateModel>>(domains);
@@ -58,7 +58,7 @@ namespace AccountData.WebApi
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
-
+            
             var domain = await _balanceUpdateService.GetByIdAsync(brokerId, id);
 
             if (domain == null)

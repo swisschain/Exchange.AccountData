@@ -20,6 +20,6 @@ namespace AccountData.Common.Domain.Entities
 
         public string OldReserved { get; set; }
 
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

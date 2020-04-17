@@ -8,7 +8,7 @@ namespace AccountData.Common.Domain.Services
     public interface ITradeService
     {
         Task<IReadOnlyList<Trade>> GetAllAsync(
-            string brokerId, string externalId, string walletId, string baseAssetId, string quotingAssetId,
+            string brokerId, string externalId, string walletId, string baseAsset, string quotingAsset,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50);
 
         Task<Trade> GetByIdAsync(string brokerId, long id);

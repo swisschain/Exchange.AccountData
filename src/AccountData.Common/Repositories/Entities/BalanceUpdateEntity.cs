@@ -41,6 +41,6 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("timestamp", TypeName = "timestamp")]
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

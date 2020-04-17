@@ -45,7 +45,7 @@ namespace AccountData.WebApi
                 : ListSortDirection.Descending;
 
             var brokerId = User.GetTenantId();
-
+            
             var domains = await _orderHistoryService.GetAllAsync(brokerId, request.Id, request.WalletId, request.AssetPairId, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<OrderHistoryModel>>(domains);
@@ -59,7 +59,7 @@ namespace AccountData.WebApi
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
-
+            
             var domain = await _orderHistoryService.GetByIdAsync(brokerId, id);
 
             if (domain == null)

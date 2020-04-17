@@ -29,13 +29,13 @@ namespace AccountData.Common.Domain.Entities
 
         public string RejectReason { get; set; }
 
-        public DateTimeOffset StatusDate { get; set; }
+        public DateTime StatusDate { get; set; }
 
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTimeOffset RegisteredAt { get; set; }
+        public DateTime RegisteredAt { get; set; }
 
-        public DateTimeOffset LastMatchTime { get; set; }
+        public DateTime? LastMatchTime { get; set; }
 
         public string LowerLimitPrice { get; set; }
 

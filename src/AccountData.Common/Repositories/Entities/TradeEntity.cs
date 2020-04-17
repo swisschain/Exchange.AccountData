@@ -17,8 +17,8 @@ namespace AccountData.Common.Repositories.Entities
         public string BrokerId { get; set; }
 
         [Required]
-        [Column("external_id", TypeName = "varchar(255)")]
-        public string ExternalId { get; set; }
+        [Column("external_order_id", TypeName = "varchar(255)")]
+        public string ExternalOrderId { get; set; }
 
         [Required]
         [Column("wallet_id", TypeName = "varchar(255)")]
@@ -82,6 +82,6 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("timestamp", TypeName = "timestamp")]
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

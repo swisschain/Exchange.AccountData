@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,7 +39,7 @@ namespace AccountData.Common.Repositories
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
 
                 if (!string.IsNullOrEmpty(assetId))
-                    query = query.Where(x => x.AssetId.Contains(assetId, StringComparison.InvariantCultureIgnoreCase));
+                    query = query.Where(x => x.AssetId == assetId);
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

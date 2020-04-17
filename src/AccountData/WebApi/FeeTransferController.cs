@@ -44,7 +44,7 @@ namespace AccountData.WebApi
                 : ListSortDirection.Descending;
 
             var brokerId = User.GetTenantId();
-
+            
             var domains = await _feeTransferService.GetAllAsync(brokerId, request.Id, request.SourceWalletId, request.TargetWalletId, request.OrderId, request.AssetId, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<FeeTransferModel>>(domains);
@@ -58,7 +58,7 @@ namespace AccountData.WebApi
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
-
+            
             var domain = await _feeTransferService.GetByIdAsync(brokerId, id);
 
             if (domain == null)

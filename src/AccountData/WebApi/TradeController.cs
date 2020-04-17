@@ -44,14 +44,14 @@ namespace AccountData.WebApi
                 : ListSortDirection.Descending;
 
             var brokerId = User.GetTenantId();
-
-            var domains = await _tradeService.GetAllAsync(brokerId, request.ExternalId, request.WalletId,
-                request.BaseAssetId, request.QuotingAssetId,
+            
+            var domains = await _tradeService.GetAllAsync(brokerId, request.ExternalOrderId, request.WalletId,
+                request.BaseAsset, request.QuotingAsset,
                 sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<TradeModel>>(domains);
 
-            return Ok(result.Paginate(request, Url, x => x.ExternalId));
+            return Ok(result.Paginate(request, Url, x => x.ExternalOrderId));
         }
 
         [HttpGet("{id}")]
@@ -60,7 +60,7 @@ namespace AccountData.WebApi
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
-
+            
             var domain = await _tradeService.GetByIdAsync(brokerId, id);
 
             if (domain == null)

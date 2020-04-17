@@ -25,8 +25,8 @@ namespace AccountData.Common.Repositories.Entities
         [Column("target_wallet_id", TypeName = "varchar(255)")]
         public string TargetWalletId { get; set; }
 
-        [Column("assets_id", TypeName = "varchar(255)")]
-        public string AssetsId { get; set; }
+        [Column("asset_id", TypeName = "varchar(255)")]
+        public string AssetId { get; set; }
 
         [Required]
         [Column("volume", TypeName = "varchar(255)")]
