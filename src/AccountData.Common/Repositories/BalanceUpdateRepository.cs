@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
+using AccountData.Common.Domain.Entities.Enums;
 using AccountData.Common.Domain.Repositories;
 using AccountData.Common.Repositories.Context;
 using AccountData.Common.Repositories.Entities;
@@ -23,7 +24,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string walletId, string assetId,
+            string brokerId, long id, string walletId, string asset, BalanceUpdateEventType eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -38,8 +39,11 @@ namespace AccountData.Common.Repositories
                 if (!string.IsNullOrWhiteSpace(walletId))
                     query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
 
-                if (!string.IsNullOrEmpty(assetId))
-                    query = query.Where(x => x.AssetId == assetId);
+                if (!string.IsNullOrEmpty(asset))
+                    query = query.Where(x => x.AssetId == asset);
+
+                if (eventType != BalanceUpdateEventType.Unknown)
+                    query = query.Where(x => x.EventType == eventType);
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

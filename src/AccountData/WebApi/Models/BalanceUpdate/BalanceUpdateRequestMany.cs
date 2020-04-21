@@ -1,4 +1,5 @@
-﻿using Swisschain.Sdk.Server.WebApi.Pagination;
+﻿using AccountData.Common.Domain.Entities.Enums;
+using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi.Models.BalanceUpdate
 {
@@ -8,6 +9,8 @@ namespace AccountData.WebApi.Models.BalanceUpdate
 
         public string WalletId { get; set; }
 
-        public string AssetId { get; set; }
+        public string Asset { get; set; }
+
+        public BalanceUpdateEventType EventType { get; set; }
     }
 }

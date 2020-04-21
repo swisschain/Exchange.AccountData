@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
+using AccountData.Common.Domain.Entities.Enums;
 using AccountData.Common.Domain.Repositories;
 using AccountData.Common.Domain.Services;
 using Microsoft.Extensions.Logging;
@@ -21,10 +22,10 @@ namespace AccountData.Common.Services
         }
 
         public Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string walletId, string assetId,
+            string brokerId, long id, string walletId, string asset, BalanceUpdateEventType eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            return _balanceUpdateRepository.GetAllAsync(brokerId, id, walletId, assetId,
+            return _balanceUpdateRepository.GetAllAsync(brokerId, id, walletId, asset, eventType,
                 sortOrder, cursor, limit);
         }
 

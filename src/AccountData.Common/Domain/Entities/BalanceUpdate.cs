@@ -1,4 +1,5 @@
 ﻿using System;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Domain.Entities
 {
@@ -19,6 +20,8 @@ namespace AccountData.Common.Domain.Entities
         public string Reserved { get; set; }
 
         public string OldReserved { get; set; }
+
+        public BalanceUpdateEventType EventType { get; set; }
 
         public DateTime Timestamp { get; set; }
     }

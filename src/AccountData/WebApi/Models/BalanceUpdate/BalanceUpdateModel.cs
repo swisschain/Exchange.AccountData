@@ -1,4 +1,5 @@
 ﻿using System;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.WebApi.Models.BalanceUpdate
 {
@@ -17,6 +18,8 @@ namespace AccountData.WebApi.Models.BalanceUpdate
         public string Reserved { get; set; }
 
         public string OldReserved { get; set; }
+
+        public BalanceUpdateEventType EventType { get; set; }
 
         public DateTime Timestamp { get; set; }
     }

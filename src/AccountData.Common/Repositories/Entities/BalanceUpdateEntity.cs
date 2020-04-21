@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AccountData.Common.Domain.Entities.Enums;
 
 namespace AccountData.Common.Repositories.Entities
 {
@@ -38,6 +39,10 @@ namespace AccountData.Common.Repositories.Entities
         [Required]
         [Column("old_reserved", TypeName = "varchar(255)")]
         public string OldReserved { get; set; }
+
+        [Required]
+        [Column("event_type", TypeName = "int2")]
+        public BalanceUpdateEventType EventType { get; set; }
 
         [Required]
         [Column("timestamp", TypeName = "timestamp")]
