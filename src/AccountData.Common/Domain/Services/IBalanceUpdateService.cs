@@ -13,5 +13,7 @@ namespace AccountData.Common.Domain.Services
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50);
 
         Task<BalanceUpdate> GetByIdAsync(string brokerId, long id);
+
+        Task<BalanceUpdateDetails> GetDetailsByIdAsync(string brokerId, long id);
     }
 }

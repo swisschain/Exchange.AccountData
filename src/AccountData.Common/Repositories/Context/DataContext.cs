@@ -23,6 +23,12 @@ namespace AccountData.Common.Repositories.Context
 
         internal DbSet<TradeEntity> Trades { get; set; }
 
+        internal DbSet<CashInEntity> CashIns { get; set; }
+
+        internal DbSet<CashOutEntity> CashOuts { get; set; }
+
+        internal DbSet<CashTransferEntity> CashTransfers { get; set; }
+
         public DataContext()
         {
         }
@@ -54,6 +60,9 @@ namespace AccountData.Common.Repositories.Context
             modelBuilder.Entity<OrderEntity>();
             modelBuilder.Entity<OrderHistoryEntity>();
             modelBuilder.Entity<TradeEntity>();
+            modelBuilder.Entity<CashInEntity>();
+            modelBuilder.Entity<CashOutEntity>();
+            modelBuilder.Entity<CashTransferEntity>();
         }
     }
 }

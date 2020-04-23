@@ -14,11 +14,19 @@ namespace AccountData
         public AutoMapperProfile()
         {
             CreateMap<Balance, BalanceModel>(MemberList.Destination);
+            
             CreateMap<Balances, BalancesModel>(MemberList.Destination);
+            
             CreateMap<BalanceUpdate, BalanceUpdateModel>(MemberList.Destination);
+            
+            CreateMap<BalanceUpdateDetails, BalanceUpdateDetailsModel>(MemberList.Destination);
+            
             CreateMap<FeeInstruction, FeeInstructionModel>(MemberList.Destination);
+            
             CreateMap<FeeTransfer, FeeTransferModel>(MemberList.Destination);
+            
             CreateMap<Order, OrderModel>(MemberList.Destination);
+            
             CreateMap<Trade, TradeModel>(MemberList.Destination);
         }
     }

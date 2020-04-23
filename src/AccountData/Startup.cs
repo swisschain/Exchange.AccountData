@@ -23,7 +23,7 @@ namespace AccountData
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
             services
-                .AddAutoMapper(typeof(AutoMapperProfile), typeof(Common.Services.AutoMapperProfile))
+                .AddAutoMapper(typeof(AutoMapperProfile), typeof(Common.Domain.Entities.Balance))
                 .AddControllersWithViews()
                 .AddFluentValidation(options =>
                 {
@@ -43,6 +43,7 @@ namespace AccountData
         protected override void ConfigureContainerExt(ContainerBuilder builder)
         {
             builder.RegisterModule(new AutofacModule(Config.AccountDataService.BalancesServiceAddress));
+            builder.RegisterModule(new Common.Repositories.AutofacModule(Config));
             builder.RegisterModule(new Common.Services.AutofacModule(Config));
         }
     }

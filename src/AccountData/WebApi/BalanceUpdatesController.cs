@@ -69,5 +69,22 @@ namespace AccountData.WebApi
 
             return Ok(model);
         }
+
+        [HttpGet("details/{id}")]
+        [ProducesResponseType(typeof(BalanceUpdateDetailsModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetDetailsByIdAsync(long id)
+        {
+            var brokerId = User.GetTenantId();
+
+            var domain = await _balanceUpdateService.GetDetailsByIdAsync(brokerId, id);
+
+            if (domain == null)
+                return NotFound();
+
+            var model = _mapper.Map<BalanceUpdateDetailsModel>(domain);
+
+            return Ok(model);
+        }
     }
 }

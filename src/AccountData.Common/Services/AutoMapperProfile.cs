@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using AccountData.Common.Domain.Entities;
-using AccountData.Common.Repositories.Entities;
 using AutoMapper;
 using MatchingEngine.Client.Contracts.Balances;
 using MEBalance = MatchingEngine.Client.Contracts.Balances.Balance;
@@ -12,31 +11,6 @@ namespace AccountData.Common.Services
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
-        {
-            Repositories();
-
-            DomainAndMatchingEngineClient();
-        }
-
-        private void Repositories()
-        {
-            CreateMap<BalanceUpdate, BalanceUpdateEntity>(MemberList.Destination);
-            CreateMap<BalanceUpdateEntity, BalanceUpdate>(MemberList.Destination);
-
-            CreateMap<FeeInstruction, FeeInstructionEntity>(MemberList.Destination);
-            CreateMap<FeeInstructionEntity, FeeInstruction>(MemberList.Destination);
-
-            CreateMap<FeeTransfer, FeeTransferEntity>(MemberList.Destination);
-            CreateMap<FeeTransferEntity, FeeTransfer>(MemberList.Destination);
-
-            CreateMap<Order, OrderEntity>(MemberList.Destination);
-            CreateMap<OrderEntity, Order>(MemberList.Destination);
-
-            CreateMap<Trade, TradeEntity>(MemberList.Destination);
-            CreateMap<TradeEntity, Trade>(MemberList.Destination);
-        }
-
-        private void DomainAndMatchingEngineClient()
         {
             CreateMap<BalancesGetAllResponse, Balances>(MemberList.Destination)
                 .ForMember(dest => dest.Timestamp,

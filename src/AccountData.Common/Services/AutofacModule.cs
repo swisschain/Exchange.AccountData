@@ -1,8 +1,5 @@
 ﻿using AccountData.Common.Configuration;
-using AccountData.Common.Domain.Repositories;
 using AccountData.Common.Domain.Services;
-using AccountData.Common.Repositories;
-using AccountData.Common.Repositories.Context;
 using Autofac;
 
 namespace AccountData.Common.Services
@@ -22,45 +19,6 @@ namespace AccountData.Common.Services
                 .As<IBalancesService>()
                 .SingleInstance();
 
-            LoadRepositories(builder);
-
-            LoadServices(builder);
-        }
-
-        protected void LoadRepositories(ContainerBuilder builder)
-        {
-            builder.RegisterType<ConnectionFactory>()
-                .AsSelf()
-                .WithParameter(TypedParameter.From(_config.AccountDataService.Db.ConnectionString))
-                .SingleInstance();
-
-            builder.RegisterType<BalanceUpdateRepository>()
-                .As<IBalanceUpdateRepository>()
-                .SingleInstance();
-
-            builder.RegisterType<FeeInstructionRepository>()
-                .As<IFeeInstructionRepository>()
-                .SingleInstance();
-
-            builder.RegisterType<FeeTransferRepository>()
-                .As<IFeeTransferRepository>()
-                .SingleInstance();
-
-            builder.RegisterType<OrderRepository>()
-                .As<IOrderRepository>()
-                .SingleInstance();
-
-            builder.RegisterType<OrderHistoryRepository>()
-                .As<IOrderHistoryRepository>()
-                .SingleInstance();
-
-            builder.RegisterType<TradeRepository>()
-                .As<ITradeRepository>()
-                .SingleInstance();
-        }
-
-        protected void LoadServices(ContainerBuilder builder)
-        {
             builder.RegisterType<BalanceUpdateService>()
                 .As<IBalanceUpdateService>()
                 .SingleInstance();
