@@ -18,11 +18,11 @@ namespace AccountData.Common.Repositories.Entities
 
         [Required]
         [Column("wallet_id", TypeName = "varchar(255)")]
-        public string WalletId { get; set; }
+        public string Wallet { get; set; }
 
         [Required]
         [Column("asset_id", TypeName = "varchar(255)")]
-        public string AssetId { get; set; }
+        public string Asset { get; set; }
 
         [Required]
         [Column("balance", TypeName = "varchar(255)")]

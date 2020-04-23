@@ -32,10 +32,10 @@ namespace AccountData.Common.Services
         }
 
         public Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string walletId, string asset, BalanceUpdateEventType eventType,
+            string brokerId, long id, string wallet, string asset, BalanceUpdateEventType? eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            return _balanceUpdateRepository.GetAllAsync(brokerId, id, walletId, asset, eventType,
+            return _balanceUpdateRepository.GetAllAsync(brokerId, id, wallet, asset, eventType,
                 sortOrder, cursor, limit);
         }
 

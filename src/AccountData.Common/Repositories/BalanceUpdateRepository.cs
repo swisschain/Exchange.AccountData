@@ -24,7 +24,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string walletId, string asset, BalanceUpdateEventType eventType,
+            string brokerId, long id, string wallet, string asset, BalanceUpdateEventType? eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -36,13 +36,13 @@ namespace AccountData.Common.Repositories
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
-                if (!string.IsNullOrWhiteSpace(walletId))
-                    query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
+                if (!string.IsNullOrWhiteSpace(wallet))
+                    query = query.Where(x => x.Wallet.ToUpper() == wallet.ToUpper());
 
                 if (!string.IsNullOrEmpty(asset))
-                    query = query.Where(x => x.AssetId == asset);
+                    query = query.Where(x => x.Asset == asset);
 
-                if (eventType != BalanceUpdateEventType.Unknown)
+                if (eventType.HasValue && eventType.Value != BalanceUpdateEventType.Unknown)
                     query = query.Where(x => x.EventType == eventType);
 
                 if (sortOrder == ListSortDirection.Ascending)

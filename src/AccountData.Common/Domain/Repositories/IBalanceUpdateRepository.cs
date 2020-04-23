@@ -9,7 +9,7 @@ namespace AccountData.Common.Domain.Repositories
     public interface IBalanceUpdateRepository
     {
         Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string walletId, string asset, BalanceUpdateEventType eventType,
+            string brokerId, long id, string wallet, string asset, BalanceUpdateEventType? eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50);
 
         Task<BalanceUpdate> GetByIdAsync(string brokerId, long id);

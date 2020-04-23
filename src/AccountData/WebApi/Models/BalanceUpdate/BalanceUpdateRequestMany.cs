@@ -7,10 +7,10 @@ namespace AccountData.WebApi.Models.BalanceUpdate
     {
         public long Id { get; set; }
 
-        public string WalletId { get; set; }
+        public string Wallet { get; set; }
 
         public string Asset { get; set; }
 
-        public BalanceUpdateEventType EventType { get; set; }
+        public BalanceUpdateEventType? EventType { get; set; }
     }
 }

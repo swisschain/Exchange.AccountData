@@ -45,7 +45,7 @@ namespace AccountData.WebApi
 
             var brokerId = User.GetTenantId();
             
-            var domains = await _balanceUpdateService.GetAllAsync(brokerId, request.Id, request.WalletId, request.Asset, request.EventType,
+            var domains = await _balanceUpdateService.GetAllAsync(brokerId, request.Id, request.Wallet, request.Asset, request.EventType,
                 sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<BalanceUpdateModel>>(domains);
