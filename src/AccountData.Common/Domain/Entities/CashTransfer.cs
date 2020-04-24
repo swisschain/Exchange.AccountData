@@ -4,11 +4,15 @@
     {
         public long Id { get; set; }
 
+        public long MessageId { get; set; }
+
         public long BalanceUpdateId { get; set; }
 
         public string BrokerId { get; set; }
 
         public string AssetId { get; set; }
+
+        public string FromWallet { get; set; }
 
         public string ToWallet { get; set; }
 

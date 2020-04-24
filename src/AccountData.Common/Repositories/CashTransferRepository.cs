@@ -20,7 +20,7 @@ namespace AccountData.Common.Repositories
             _mapper = mapper;
         }
 
-        public async Task<CashTransfer> GetByBalanceUpdateIdAsync(string brokerId, long balanceUpdateId)
+        public async Task<CashTransfer> GetByBalanceUpdateIdAsync(string brokerId, long messageId)
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
@@ -28,7 +28,7 @@ namespace AccountData.Common.Repositories
 
                 query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
 
-                query = query.Where(x => x.BalanceUpdateId == balanceUpdateId);
+                query = query.Where(x => x.MessageId == messageId);
 
                 var entity = await query.SingleOrDefaultAsync();
 

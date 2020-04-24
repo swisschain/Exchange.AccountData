@@ -56,7 +56,7 @@ namespace AccountData.Common.Services
             switch (balanceUpdate.EventType)
             {
                 case BalanceUpdateEventType.CashIn:
-                    var cashIn = await _cashInRepository.GetByBalanceUpdateIdAsync(brokerId, id);
+                    var cashIn = await _cashInRepository.GetByBalanceUpdateIdAsync(brokerId, balanceUpdate.MessageId);
 
                     if (cashIn == null)
                         return null;
@@ -71,7 +71,7 @@ namespace AccountData.Common.Services
                     break;
 
                 case BalanceUpdateEventType.CashOut:
-                    var cashOut = await _cashOutRepository.GetByBalanceUpdateIdAsync(brokerId, id);
+                    var cashOut = await _cashOutRepository.GetByBalanceUpdateIdAsync(brokerId, balanceUpdate.MessageId);
 
                     if (cashOut == null)
                         return null;
@@ -86,7 +86,7 @@ namespace AccountData.Common.Services
                     break;
 
                 case BalanceUpdateEventType.CashTransfer:
-                    var cashTransfer = await _cashTransferRepository.GetByBalanceUpdateIdAsync(brokerId, id);
+                    var cashTransfer = await _cashTransferRepository.GetByBalanceUpdateIdAsync(brokerId, balanceUpdate.MessageId);
 
                     if (cashTransfer == null)
                         return null;
@@ -96,6 +96,7 @@ namespace AccountData.Common.Services
                         Asset = cashTransfer.AssetId,
                         Volume = decimal.Parse(cashTransfer.Volume),
                         Type = BalanceUpdateType.CashTransfer,
+                        FromWallet = cashTransfer.FromWallet,
                         ToWallet = cashTransfer.ToWallet,
                         Description = cashTransfer.Description
                     };

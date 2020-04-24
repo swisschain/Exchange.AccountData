@@ -5,6 +5,6 @@ namespace AccountData.Common.Domain.Repositories
 {
     public interface ICashTransferRepository
     {
-        Task<CashTransfer> GetByBalanceUpdateIdAsync(string brokerId, long balanceUpdateId);
+        Task<CashTransfer> GetByBalanceUpdateIdAsync(string brokerId, long messageId);
     }
 }

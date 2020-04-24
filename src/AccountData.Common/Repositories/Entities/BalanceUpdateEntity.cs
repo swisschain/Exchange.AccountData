@@ -13,6 +13,10 @@ namespace AccountData.Common.Repositories.Entities
         public long Id { get; set; }
 
         [Required]
+        [Column("message_id", TypeName = "bigint")]
+        public long MessageId { get; set; }
+
+        [Required]
         [Column("broker_id", TypeName = "varchar(255)")]
         public string BrokerId { get; set; }
 

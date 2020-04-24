@@ -7,6 +7,8 @@ namespace AccountData.Common.Domain.Entities
     {
         public long Id { get; set; }
 
+        public long MessageId { get; set; }
+
         public string BrokerId { get; set; }
 
         public string Wallet { get; set; }

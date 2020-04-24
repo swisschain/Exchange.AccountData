@@ -10,6 +10,8 @@ namespace AccountData.WebApi.Models.BalanceUpdate
 
         public BalanceUpdateType Type { get; set; }
 
+        public string FromWallet { get; set; }
+
         public string ToWallet { get; set; }
 
         public string Description { get; set; }

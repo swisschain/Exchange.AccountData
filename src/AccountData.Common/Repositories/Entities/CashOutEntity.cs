@@ -11,6 +11,10 @@ namespace AccountData.Common.Repositories.Entities
         public long Id { get; set; }
 
         [Required]
+        [Column("message_id", TypeName = "bigint")]
+        public long MessageId { get; set; }
+
+        [Required]
         [Column("balance_update_id", TypeName = "bigint")]
         public long BalanceUpdateId { get; set; }
 
