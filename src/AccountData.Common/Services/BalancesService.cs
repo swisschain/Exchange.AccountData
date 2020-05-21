@@ -1,40 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
+using AccountData.Common.Domain.Repositories;
 using AccountData.Common.Domain.Services;
 using AutoMapper;
-using MatchingEngine.Client;
-using MatchingEngine.Client.Contracts.Balances;
 
 namespace AccountData.Common.Services
 {
     public class BalancesService : IBalancesService
     {
-        private readonly IMatchingEngineClient _matchingEngineClient;
+        private readonly IBalanceRepository _balanceRepository;
         private readonly IMapper _mapper;
 
-        public BalancesService(IMatchingEngineClient matchingEngineClient, IMapper mapper)
+        public BalancesService(IBalanceRepository balanceRepository, IMapper mapper)
         {
-            _matchingEngineClient = matchingEngineClient;
+            _balanceRepository = balanceRepository;
             _mapper = mapper;
         }
 
-        public async Task<Balances> GetAllAsync(string brokerId, string walletId)
+        public Task<Balances> GetAllAsync(string brokerId, long accountId, long walletId, string asset,
+            ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            var request = new BalancesGetAllRequest { BrokerId = brokerId, WalletId = walletId };
-
-            BalancesGetAllResponse balances =
-                await _matchingEngineClient.Balances.GetAllAsync(request);
-
-            return _mapper.Map<Balances>(balances);
+            return _balanceRepository.GetAllAsync(brokerId, accountId, walletId, asset, sortOrder, cursor, limit);
         }
 
-        public async Task<Balances> GetByAssetIdAsync(string brokerId, string walletId, string asset)
+        public Task<Balances> GetByAssetIdAsync(string brokerId, long accountId, long walletId, string asset)
         {
-            var request = new BalancesGetByAssetIdRequest { BrokerId = brokerId, WalletId = walletId, AssetId = asset };
-
-            BalancesGetByAssetIdResponse balanceResponse = await _matchingEngineClient.Balances.GetByAssetIdAsync(request);
-
-            return _mapper.Map<Balances>(balanceResponse);
+            return _balanceRepository.GetByIdAsync(brokerId, accountId, walletId, asset);
         }
     }
 }

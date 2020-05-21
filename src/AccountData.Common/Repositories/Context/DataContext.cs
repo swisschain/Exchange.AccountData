@@ -11,6 +11,8 @@ namespace AccountData.Common.Repositories.Context
 
         private string _connectionString;
 
+        internal DbSet<BalanceEntity> Balances { get; set; }
+
         internal DbSet<BalanceUpdateEntity> BalanceUpdates { get; set; }
 
         internal DbSet<FeeInstructionEntity> FeeInstructions { get; set; }
@@ -54,6 +56,7 @@ namespace AccountData.Common.Repositories.Context
         {
             modelBuilder.HasDefaultSchema(Schema);
 
+            modelBuilder.Entity<BalanceEntity>();
             modelBuilder.Entity<BalanceUpdateEntity>();
             modelBuilder.Entity<FeeInstructionEntity>();
             modelBuilder.Entity<FeeTransferEntity>();

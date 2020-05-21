@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Services;
 using AccountData.WebApi.Models.Balance;
@@ -24,17 +25,18 @@ namespace AccountData.WebApi
             _mapper = mapper;
         }
 
-        [HttpGet("{walletId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(BalancesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAllAsync(string walletId)
+        public async Task<IActionResult> GetAllAsync(long accountId, long walletId, string asset,
+            ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            if (string.IsNullOrWhiteSpace(walletId))
+            if (walletId == 0)
                 return NotFound();
 
             var brokerId = User.GetTenantId();
 
-            var balances = await _balancesService.GetAllAsync(brokerId, walletId);
+            var balances = await _balancesService.GetAllAsync(brokerId, accountId, walletId, asset, sortOrder, cursor, limit);
 
             if (balances == null)
                 return NotFound();
@@ -50,14 +52,14 @@ namespace AccountData.WebApi
         [HttpGet("{walletId}/assets/{asset}")]
         [ProducesResponseType(typeof(BalancesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByAssetAsync(string walletId, string asset)
+        public async Task<IActionResult> GetByAssetAsync(long accountId, long walletId, string asset)
         {
-            if (string.IsNullOrWhiteSpace(walletId))
+            if (walletId == 0)
                 return NotFound();
 
             var brokerId = User.GetTenantId();
 
-            var balances = await _balancesService.GetByAssetIdAsync(brokerId, walletId, asset);
+            var balances = await _balancesService.GetByAssetIdAsync(brokerId, accountId, walletId, asset);
 
             if (balances == null)
                 return NotFound();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +23,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<OrderHistory>> GetAllAsync(
-            string brokerId, long id, string walletId, string assetPairId,
+            string brokerId, long id, long accountId, long walletId, string assetPairId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -36,8 +35,10 @@ namespace AccountData.Common.Repositories
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
-                if (!string.IsNullOrWhiteSpace(walletId))
-                    query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
+                query = query.Where(x => x.AccountId == accountId);
+
+                if (walletId != 0)
+                    query = query.Where(x => x.WalletId == walletId);
 
                 if (!string.IsNullOrEmpty(assetPairId))
                     query = query.Where(x => x.AssetPairId == assetPairId);

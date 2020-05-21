@@ -8,21 +8,21 @@ namespace AccountData.Common.Repositories.Entities
     public class FeeInstructionEntity
     {
         [Key]
-        [Column("id", TypeName = "int8")]
+        [Column("id", TypeName = "bigint")]
         public long Id { get; set; }
 
         [Required]
         [Column("broker_id", TypeName = "varchar(255)")]
         public string BrokerId { get; set; }
 
-        [Column("order_id", TypeName = "int8")]
+        [Column("order_id", TypeName = "bigint")]
         public long OrderId { get; set; }
 
-        [Column("source_wallet_id", TypeName = "varchar(255)")]
-        public string SourceWalletId { get; set; }
+        [Column("source_wallet_id", TypeName = "bigint")]
+        public long FromWalletId { get; set; }
 
-        [Column("target_wallet_id", TypeName = "varchar(255)")]
-        public string TargetWalletId { get; set; }
+        [Column("target_wallet_id", TypeName = "bigint")]
+        public long ToWalletId { get; set; }
 
         [Column("assets_ids", TypeName = "varchar(255)")]
         public string AssetsIds { get; set; }

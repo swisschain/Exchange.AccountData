@@ -31,12 +31,16 @@ namespace AccountData.Common.Repositories.Entities
         public string Volume { get; set; }
 
         [Required]
+        [Column("account_id", TypeName = "bigint")]
+        public long AccountId { get; set; }
+
+        [Required]
         [Column("from_wallet_id", TypeName = "varchar(255)")]
-        public string FromWallet { get; set; }
+        public string FromWalletId { get; set; }
 
         [Required]
         [Column("to_wallet_id", TypeName = "varchar(255)")]
-        public string ToWallet { get; set; }
+        public string ToWalletId { get; set; }
 
         [Required]
         [Column("description", TypeName = "varchar")]

@@ -11,7 +11,9 @@ namespace AccountData.Common.Domain.Entities
 
         public string ExternalId { get; set; }
 
-        public string WalletId { get; set; }
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
 
         public string AssetPairId { get; set; }
 

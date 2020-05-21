@@ -12,9 +12,11 @@
 
         public string AssetId { get; set; }
 
-        public string FromWallet { get; set; }
+        public long AccountId { get; set; }
 
-        public string ToWallet { get; set; }
+        public long FromWalletId { get; set; }
+
+        public long ToWalletId { get; set; }
 
         public string Volume { get; set; }
 

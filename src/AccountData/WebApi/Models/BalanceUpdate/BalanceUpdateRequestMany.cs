@@ -7,7 +7,9 @@ namespace AccountData.WebApi.Models.BalanceUpdate
     {
         public long Id { get; set; }
 
-        public string Wallet { get; set; }
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
 
         public string Asset { get; set; }
 

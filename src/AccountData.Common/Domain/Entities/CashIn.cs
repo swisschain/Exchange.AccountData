@@ -8,6 +8,10 @@
 
         public long BalanceUpdateId { get; set; }
 
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
+
         public string BrokerId { get; set; }
 
         public string AssetId { get; set; }

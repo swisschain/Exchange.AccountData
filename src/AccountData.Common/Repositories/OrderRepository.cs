@@ -25,7 +25,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<Order>> GetAllAsync(
-            string brokerId, long id, string externalId, string walletId, string assetPairId,
+            string brokerId, long id, string externalId, long accountId, long walletId, string assetPairId,
             OrderType? orderType, OrderSide? side, OrderStatus? status, OrderTimeInForce? timeInForce,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
@@ -33,16 +33,18 @@ namespace AccountData.Common.Repositories
             {
                 IQueryable<OrderEntity> query = context.Orders;
 
-                query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
+                query = query.Where(x => x.BrokerId == brokerId);
 
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
                 if (!string.IsNullOrWhiteSpace(externalId))
-                    query = query.Where(x => x.ExternalId.ToUpper() == externalId.ToUpper());
+                    query = query.Where(x => x.ExternalId == externalId);
 
-                if (!string.IsNullOrWhiteSpace(walletId))
-                    query = query.Where(x => x.WalletId.ToUpper() == walletId.ToUpper());
+                query = query.Where(x => x.AccountId == accountId);
+
+                if (walletId != 0)
+                    query = query.Where(x => x.WalletId == walletId);
 
                 if (!string.IsNullOrEmpty(assetPairId))
                     query = query.Where(x => x.AssetPairId == assetPairId);

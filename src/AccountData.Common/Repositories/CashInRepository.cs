@@ -26,7 +26,7 @@ namespace AccountData.Common.Repositories
             {
                 IQueryable<CashInEntity> query = context.CashIns;
 
-                query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
+                query = query.Where(x => x.BrokerId == brokerId);
 
                 query = query.Where(x => x.BalanceUpdateId == balanceUpdateId);
 

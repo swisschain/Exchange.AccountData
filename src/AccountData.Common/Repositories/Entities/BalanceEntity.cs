@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AccountData.Common.Repositories.Entities
 {
-    [Table("cash_outs")]
-    public class CashOutEntity
+    [Table("balances")]
+    public class BalanceEntity
     {
         [Key]
         [Column("id", TypeName = "bigint")]
@@ -15,6 +16,10 @@ namespace AccountData.Common.Repositories.Entities
         public long MessageId { get; set; }
 
         [Required]
+        [Column("broker_id", TypeName = "varchar(255)")]
+        public string BrokerId { get; set; }
+
+        [Required]
         [Column("account_id", TypeName = "bigint")]
         public long AccountId { get; set; }
 
@@ -23,23 +28,19 @@ namespace AccountData.Common.Repositories.Entities
         public long WalletId { get; set; }
 
         [Required]
-        [Column("balance_update_id", TypeName = "bigint")]
-        public long BalanceUpdateId { get; set; }
-
-        [Required]
-        [Column("broker_id", TypeName = "varchar(255)")]
-        public string BrokerId { get; set; }
-
-        [Required]
         [Column("asset_id", TypeName = "varchar(255)")]
-        public string AssetId { get; set; }
+        public string Asset { get; set; }
 
         [Required]
-        [Column("volume", TypeName = "varchar(255)")]
-        public string Volume { get; set; }
+        [Column("balance", TypeName = "varchar(255)")]
+        public string Balance { get; set; }
 
         [Required]
-        [Column("description", TypeName = "varchar")]
-        public string Description { get; set; }
+        [Column("reserved", TypeName = "varchar(255)")]
+        public string Reserved { get; set; }
+
+        [Required]
+        [Column("timestamp", TypeName = "timestamp")]
+        public DateTime Timestamp { get; set; }
     }
 }

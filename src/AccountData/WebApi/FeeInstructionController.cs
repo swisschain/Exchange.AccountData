@@ -46,7 +46,7 @@ namespace AccountData.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var domains = await _feeInstructionService.GetAllAsync(brokerId, request.Id, request.SourceWalletId, request.TargetWalletId, request.OrderId, request.AssetId, sortOrder, request.Cursor, request.Limit);
+            var domains = await _feeInstructionService.GetAllAsync(brokerId, request.Id, request.FromWalletId, request.ToWalletId, request.OrderId, request.AssetId, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<FeeInstructionModel>>(domains);
 

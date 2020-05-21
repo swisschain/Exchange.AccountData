@@ -6,12 +6,11 @@ namespace AccountData.WebApi.Models.Trade
     {
         public string ExternalOrderId { get; set; }
 
+        public long AccountId { get; set; }
 
-        public string WalletId { get; set; }
-
+        public long WalletId { get; set; }
 
         public string BaseAsset { get; set; }
-
 
         public string QuotingAsset { get; set; }
     }

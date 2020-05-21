@@ -6,9 +6,11 @@ namespace AccountData.WebApi.Models.FeeInstruction
     {
         public long Id { get; set; }
 
-        public string SourceWalletId { get; set; }
+        public long AccountId { get; set; }
 
-        public string TargetWalletId { get; set; }
+        public long FromWalletId { get; set; }
+
+        public long ToWalletId { get; set; }
 
         public int OrderId { get; set; }
 

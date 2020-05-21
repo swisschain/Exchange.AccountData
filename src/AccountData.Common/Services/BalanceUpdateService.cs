@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Entities;
@@ -32,10 +31,10 @@ namespace AccountData.Common.Services
         }
 
         public Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string wallet, string asset, BalanceUpdateEventType? eventType,
+            string brokerId, long id, long accountId, long walletId, string asset, BalanceUpdateEventType? eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            return _balanceUpdateRepository.GetAllAsync(brokerId, id, wallet, asset, eventType,
+            return _balanceUpdateRepository.GetAllAsync(brokerId, id, accountId, walletId, asset, eventType,
                 sortOrder, cursor, limit);
         }
 
@@ -96,8 +95,8 @@ namespace AccountData.Common.Services
                         Asset = cashTransfer.AssetId,
                         Volume = decimal.Parse(cashTransfer.Volume),
                         Type = BalanceUpdateType.CashTransfer,
-                        FromWallet = cashTransfer.FromWallet,
-                        ToWallet = cashTransfer.ToWallet,
+                        FromWalletId = cashTransfer.FromWalletId,
+                        ToWalletId = cashTransfer.ToWalletId,
                         Description = cashTransfer.Description
                     };
                     break;

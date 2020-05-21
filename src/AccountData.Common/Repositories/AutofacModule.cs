@@ -21,6 +21,10 @@ namespace AccountData.Common.Repositories
                 .WithParameter(TypedParameter.From(_config.AccountDataService.Db.ConnectionString))
                 .SingleInstance();
 
+            builder.RegisterType<BalanceRepository>()
+                .As<IBalanceRepository>()
+                .SingleInstance();
+
             builder.RegisterType<BalanceUpdateRepository>()
                 .As<IBalanceUpdateRepository>()
                 .SingleInstance();

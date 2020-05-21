@@ -11,7 +11,9 @@ namespace AccountData.Common.Domain.Entities
 
         public string BrokerId { get; set; }
 
-        public string Wallet { get; set; }
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
 
         public string Asset { get; set; }
 

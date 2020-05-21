@@ -10,6 +10,10 @@
 
         public string BrokerId { get; set; }
 
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
+
         public string AssetId { get; set; }
 
         public string Volume { get; set; }

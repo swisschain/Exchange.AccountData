@@ -24,20 +24,21 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<BalanceUpdate>> GetAllAsync(
-            string brokerId, long id, string wallet, string asset, BalanceUpdateEventType? eventType,
+            string brokerId, long id, long accountId, long walletId, string asset, BalanceUpdateEventType? eventType,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
                 IQueryable<BalanceUpdateEntity> query = context.BalanceUpdates;
 
-                query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
+                query = query.Where(x => x.BrokerId == brokerId);
 
                 if (id != default)
                     query = query.Where(x => x.Id == id);
 
-                if (!string.IsNullOrWhiteSpace(wallet))
-                    query = query.Where(x => x.Wallet.ToUpper() == wallet.ToUpper());
+                query = query.Where(x => x.AccountId == accountId);
+
+                query = query.Where(x => x.WalletId == walletId);
 
                 if (!string.IsNullOrEmpty(asset))
                     query = query.Where(x => x.Asset == asset);

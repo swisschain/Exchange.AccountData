@@ -3,24 +3,14 @@ using System.Collections.Generic;
 
 namespace AccountData.Common.Domain.Entities
 {
-    /// <summary>
-    /// Represents balances of many assets.
-    /// </summary>
     public class Balances
     {
-        /// <summary>
-        /// Wallet identifier.
-        /// </summary>
-        public string WalletId { get; set; }
+        public long AccountId { get; set; }
 
-        /// <summary>
-        /// Timestamp.
-        /// </summary>
+        public long WalletId { get; set; }
+
         public DateTime Timestamp { get; set; }
 
-        /// <summary>
-        /// List of balances.
-        /// </summary>
-        public IReadOnlyList<Balance> List { get; set; }
+        public IList<Balance> List { get; set; } = new List<Balance>();
     }
 }

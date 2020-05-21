@@ -9,18 +9,17 @@ namespace AccountData.WebApi.Models.Order
 
         public string ExternalId { get; set; }
 
-        public string WalletId { get; set; }
+        public long AccountId { get; set; }
+
+        public long WalletId { get; set; }
 
         public string AssetPairId { get; set; }
 
         public OrderType? OrderType { get; set; }
 
-
         public OrderSide? Side { get; set; }
 
-
         public OrderStatus? Status { get; set; }
-
 
         public OrderTimeInForce? TimeInForce { get; set; }
     }

@@ -9,7 +9,7 @@ namespace AccountData.Common.Domain.Services
     public interface IOrderService
     {
         Task<IReadOnlyList<Order>> GetAllAsync(
-            string brokerId, long id, string externalId, string walletId, string assetPairId,
+            string brokerId, long id, string externalId, long accountId, long walletId, string assetPairId,
             OrderType? orderType, OrderSide? side, OrderStatus? status, OrderTimeInForce? timeInForce,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50);
 

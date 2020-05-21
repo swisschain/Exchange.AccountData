@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Services;
 using AccountData.WebApi.Models.Order;
@@ -46,7 +45,7 @@ namespace AccountData.WebApi
             var brokerId = User.GetTenantId();
             
             var domains = await _orderService.GetAllAsync(
-                brokerId, request.Id, request.ExternalId, request.WalletId, request.AssetPairId,
+                brokerId, request.Id, request.ExternalId, request.AccountId, request.WalletId, request.AssetPairId,
                 request.OrderType, request.Side, request.Status, request.TimeInForce,
                 sortOrder, request.Cursor, request.Limit);
 

@@ -8,7 +8,7 @@ namespace AccountData.Common.Domain.Services
     public interface IOrderHistoryService
     {
         Task<IReadOnlyList<OrderHistory>> GetAllAsync(
-            string brokerId, long id, string walletId, string assetPairId,
+            string brokerId, long id, long accountId, long walletId, string assetPairId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50);
 
         Task<OrderHistory> GetByIdAsync(string brokerId, long id);

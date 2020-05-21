@@ -9,7 +9,7 @@ namespace AccountData.Common.Repositories.Entities
     public class OrderEntity
     {
         [Key]
-        [Column("id", TypeName = "int8")]
+        [Column("id", TypeName = "bigint")]
         public long Id { get; set; }
 
         [Required]
@@ -21,8 +21,12 @@ namespace AccountData.Common.Repositories.Entities
         public string ExternalId { get; set; }
 
         [Required]
-        [Column("wallet_id", TypeName = "varchar(255)")]
-        public string WalletId { get; set; }
+        [Column("account_id", TypeName = "bigint")]
+        public long AccountId { get; set; }
+
+        [Required]
+        [Column("wallet_id", TypeName = "bigint")]
+        public long WalletId { get; set; }
 
         [Required]
         [Column("asset_pair_id", TypeName = "varchar(255)")]

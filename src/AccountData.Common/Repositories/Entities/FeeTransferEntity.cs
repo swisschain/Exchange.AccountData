@@ -7,7 +7,7 @@ namespace AccountData.Common.Repositories.Entities
     public class FeeTransferEntity
     {
         [Key]
-        [Column("id", TypeName = "int8")]
+        [Column("id", TypeName = "bigint")]
         public long Id { get; set; }
 
         [Required]
@@ -18,12 +18,12 @@ namespace AccountData.Common.Repositories.Entities
         public long OrderId { get; set; }
 
         [Required]
-        [Column("source_wallet_id", TypeName = "varchar(255)")]
-        public string SourceWalletId { get; set; }
+        [Column("source_wallet_id", TypeName = "bigint")]
+        public long FromWalletId { get; set; }
 
         [Required]
-        [Column("target_wallet_id", TypeName = "varchar(255)")]
-        public string TargetWalletId { get; set; }
+        [Column("target_wallet_id", TypeName = "bigint")]
+        public long ToWalletId { get; set; }
 
         [Column("asset_id", TypeName = "varchar(255)")]
         public string AssetId { get; set; }
