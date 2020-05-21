@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using AccountData.Common.Domain.Services;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swisschain.Sdk.Server.Authorization;
+using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi
 {
@@ -28,15 +30,19 @@ namespace AccountData.WebApi
         [HttpGet]
         [ProducesResponseType(typeof(BalancesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAllAsync(long accountId, long walletId, string asset,
-            ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
+        public async Task<IActionResult> GetAllAsync(BalanceRequestMany request)
         {
-            if (walletId == 0)
+            if (request.AccountId == 0)
                 return NotFound();
 
             var brokerId = User.GetTenantId();
 
-            var balances = await _balancesService.GetAllAsync(brokerId, accountId, walletId, asset, sortOrder, cursor, limit);
+            var sortOrder = request.Order == PaginationOrder.Asc
+                ? ListSortDirection.Ascending
+                : ListSortDirection.Descending;
+
+            var balances = await _balancesService.GetAllAsync(brokerId, request.AccountId, request.WalletId, request.Asset,
+                sortOrder, request.Cursor, request.Limit);
 
             if (balances == null)
                 return NotFound();
@@ -49,12 +55,12 @@ namespace AccountData.WebApi
             return Ok(model);
         }
 
-        [HttpGet("{walletId}/assets/{asset}")]
+        [HttpGet("{accountId}/{walletId}/assets/{asset}")]
         [ProducesResponseType(typeof(BalancesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByAssetAsync(long accountId, long walletId, string asset)
+        public async Task<IActionResult> GetByAssetAsync([Required] long accountId, long walletId, string asset)
         {
-            if (walletId == 0)
+            if (accountId == 0)
                 return NotFound();
 
             var brokerId = User.GetTenantId();
