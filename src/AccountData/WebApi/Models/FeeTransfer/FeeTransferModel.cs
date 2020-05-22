@@ -10,6 +10,10 @@ namespace AccountData.WebApi.Models.FeeTransfer
 
         public long OrderId { get; set; }
 
+        public long FromAccountId { get; set; }
+
+        public long ToAccountId { get; set; }
+
         public long FromWalletId { get; set; }
 
         public long ToWalletId { get; set; }

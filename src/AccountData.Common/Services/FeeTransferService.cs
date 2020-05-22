@@ -21,10 +21,10 @@ namespace AccountData.Common.Services
         }
 
         public Task<IReadOnlyList<FeeTransfer>> GetAllAsync(
-            string brokerId, long id, long fromWalletId, long toWalletId, int orderId, string assetId,
+            string brokerId, long id, long fromAccountId, long toAccountId, long fromWalletId, long toWalletId, int orderId, string assetId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
-            return _feeTransferRepository.GetAllAsync(brokerId, id, fromWalletId, toWalletId, orderId, assetId,
+            return _feeTransferRepository.GetAllAsync(brokerId, id, fromAccountId, toAccountId, fromWalletId, toWalletId, orderId, assetId,
                 sortOrder, cursor, limit);
         }
 

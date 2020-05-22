@@ -18,6 +18,14 @@ namespace AccountData.Common.Repositories.Entities
         public long OrderId { get; set; }
 
         [Required]
+        [Column("source_account_id", TypeName = "bigint")]
+        public long FromAccountId { get; set; }
+
+        [Required]
+        [Column("target_account_id", TypeName = "bigint")]
+        public long ToAccountId { get; set; }
+
+        [Required]
         [Column("source_wallet_id", TypeName = "bigint")]
         public long FromWalletId { get; set; }
 

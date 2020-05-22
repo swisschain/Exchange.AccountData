@@ -23,7 +23,7 @@ namespace AccountData.Common.Repositories
         }
 
         public async Task<IReadOnlyList<FeeTransfer>> GetAllAsync(
-            string brokerId, long id, long fromWalletId, long toWalletId, int orderId, string assetId,
+            string brokerId, long id, long fromAccountId, long toAccountId, long fromWalletId, long toWalletId, int orderId, string assetId,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = default, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -34,6 +34,12 @@ namespace AccountData.Common.Repositories
 
                 if (id != default)
                     query = query.Where(x => x.Id == id);
+
+                if (fromAccountId != 0)
+                    query = query.Where(x => x.FromAccountId == fromAccountId);
+
+                if (toAccountId != 0)
+                    query = query.Where(x => x.ToAccountId == toAccountId);
 
                 if (fromWalletId != 0)
                     query = query.Where(x => x.FromWalletId == fromWalletId);

@@ -38,7 +38,8 @@ namespace AccountData.Common.Repositories
 
                 query = query.Where(x => x.AccountId == accountId);
 
-                query = query.Where(x => x.WalletId == walletId);
+                if (walletId != 0)
+                    query = query.Where(x => x.WalletId == walletId);
 
                 if (!string.IsNullOrEmpty(asset))
                     query = query.Where(x => x.Asset == asset);

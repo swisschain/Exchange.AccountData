@@ -8,6 +8,10 @@
 
         public long OrderId { get; set; }
 
+        public long FromAccountId { get; set; }
+
+        public long ToAccountId { get; set; }
+
         public string FromWalletId { get; set; }
 
         public string ToWalletId { get; set; }
