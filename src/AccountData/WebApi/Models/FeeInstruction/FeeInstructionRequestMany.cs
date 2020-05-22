@@ -1,4 +1,5 @@
-﻿using Swisschain.Sdk.Server.WebApi.Pagination;
+﻿using System.ComponentModel.DataAnnotations;
+using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi.Models.FeeInstruction
 {
@@ -6,6 +7,7 @@ namespace AccountData.WebApi.Models.FeeInstruction
     {
         public long Id { get; set; }
 
+        [Required]
         public long AccountId { get; set; }
 
         public long FromWalletId { get; set; }

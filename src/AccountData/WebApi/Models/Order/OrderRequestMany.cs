@@ -1,4 +1,5 @@
-﻿using AccountData.Common.Domain.Entities.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using AccountData.Common.Domain.Entities.Enums;
 using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi.Models.Order
@@ -9,6 +10,7 @@ namespace AccountData.WebApi.Models.Order
 
         public string ExternalId { get; set; }
 
+        [Required]
         public long AccountId { get; set; }
 
         public long WalletId { get; set; }

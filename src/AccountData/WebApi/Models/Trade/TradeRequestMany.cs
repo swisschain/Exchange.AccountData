@@ -1,4 +1,5 @@
-﻿using Swisschain.Sdk.Server.WebApi.Pagination;
+﻿using System.ComponentModel.DataAnnotations;
+using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace AccountData.WebApi.Models.Trade
 {
@@ -6,6 +7,7 @@ namespace AccountData.WebApi.Models.Trade
     {
         public string ExternalOrderId { get; set; }
 
+        [Required]
         public long AccountId { get; set; }
 
         public long WalletId { get; set; }

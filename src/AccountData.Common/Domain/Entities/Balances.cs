@@ -11,6 +11,6 @@ namespace AccountData.Common.Domain.Entities
 
         public DateTime Timestamp { get; set; }
 
-        public IList<Balance> List { get; set; } = new List<Balance>();
+        public List<Balance> List { get; set; } = new List<Balance>();
     }
 }
