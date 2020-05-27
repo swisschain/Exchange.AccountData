@@ -102,7 +102,7 @@ namespace AccountData.Common.Services
                     break;
 
                 default:
-                    _logger.LogWarning("Unsupported type of balance update. {$BalanceUpdateEventType}", balanceUpdate.EventType);
+                    _logger.LogWarning("Unsupported type of balance update. {@BalanceUpdateEventType}", balanceUpdate.EventType);
                     break;
             }
 
