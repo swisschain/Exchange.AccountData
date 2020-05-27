@@ -20,20 +20,11 @@ namespace AccountData.Worker
             base.ConfigureServicesExt(services);
 
             services.AddHttpClient();
-            //services.AddPersistence(Config.Db.ConnectionString);
-            //services.AddAppFeatureExample();
-            //services.AddMessageConsumers();
-
+            
             services.AddMassTransit(x =>
             {
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    //cfg.Host(Config.RabbitMq.HostUrl, host =>
-                    //{
-                    //    host.Username(Config.RabbitMq.Username);
-                    //    host.Password(Config.RabbitMq.Password);
-                    //});
-
                     cfg.UseMessageRetry(y =>
                         y.Exponential(5,
                             TimeSpan.FromMilliseconds(100),
@@ -41,15 +32,7 @@ namespace AccountData.Worker
                             TimeSpan.FromMilliseconds(100)));
 
                     cfg.SetLoggerFactory(provider.GetRequiredService<ILoggerFactory>());
-
-                    // TODO: Define your receive endpoints. It's just an example:
-                    //cfg.ReceiveEndpoint("exchange-account-data-something-execution", e =>
-                    //{
-                    //    e.Consumer(provider.GetRequiredService<ExecuteSomethingConsumer>);
-                    //});
                 }));
-
-                //services.AddHostedService<BusHost>();
             });
         }
     }
